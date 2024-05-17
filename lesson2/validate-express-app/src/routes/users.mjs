@@ -6,7 +6,7 @@ import {
   postUsersHandler,
   putUserByIdHandler
 } from '../controllers/users.mjs'
-import { validateUserPost, validateUserPut } from '../validators/userValidation.mjs'
+import { validateParamsUserId, validateUserPost, validateUserPut } from '../validators/userValidation.mjs'
 
 const usersRouter = Router()
 
@@ -15,8 +15,8 @@ usersRouter.route('/')
   .post(validateUserPost, postUsersHandler)
 
 usersRouter.route('/:userId')
-  .get(getUserByIdHandler)
-  .delete(deleteUserByIdHandler)
-  .put(validateUserPut, putUserByIdHandler)
+  .get(validateParamsUserId, getUserByIdHandler)
+  .delete(validateParamsUserId, deleteUserByIdHandler)
+  .put(validateParamsUserId, validateUserPut, putUserByIdHandler)
 
 export default usersRouter

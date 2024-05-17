@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import { celebrate, Segments } from 'celebrate'
 
 const userSchema = Joi.object({
   name: Joi.string().required().min(3).max(30),
@@ -6,20 +7,18 @@ const userSchema = Joi.object({
   age: Joi.number().integer().min(0).max(120)
 })
 
-const validateUserPost = (req, res, next) => {
-  const { error } = userSchema.validate(req.body)
-  if (error) {
-    return res.status(400).json({ error: error.details[0].message })
-  }
-  next()
-}
+const validateUserPost = celebrate({
+  [Segments.BODY]: userSchema
+})
 
-const validateUserPut = (req, res, next) => {
-  const { error } = userSchema.validate(req.body)
-  if (error) {
-    return res.status(400).json({ error: error.details[0].message })
-  }
-  next()
-}
+const validateUserPut = celebrate({
+  [Segments.BODY]: userSchema
+})
 
-export { validateUserPost, validateUserPut }
+const validateParamsUserId = celebrate({
+  [Segments.PARAMS]: {
+    userId: Joi.number().integer().positive().required()
+  }
+})
+
+export { validateUserPost, validateUserPut, validateParamsUserId }
