@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send(`
     <h2>Upload a file</h2>
     <form action="api/upload" method="post" enctype="multipart/form-data">
-      <div>File: <input type="file" name="uploadFile"></div>
+      <div>File: <input type="file" name="uploadFile" multiple></div>
       <button type="submit">Upload</button>
     </form>
   `)
@@ -29,20 +29,22 @@ app.post('/api/upload', async (req, res) => {
       })
     })
 
-    if (!files || !('uploadFile' in files)) {
+    if (!files.uploadFile) {
       res.status(400).send('No file uploaded')
       return
     }
 
-    const file = files.uploadFile instanceof Array ? files.uploadFile[0] : files.uploadFile
-    const oldPath = file.filepath
-    const newPath = path.join(__dirname, 'uploads', file.originalFilename)
+    const fileArray = Array.isArray(files.uploadFile) ? files.uploadFile : [files.uploadFile]
+    for (const file of fileArray) {
+      const oldPath = file.filepath
+      const newPath = path.join(__dirname, 'uploads', path.basename(file.originalFilename))
 
-    await fs.copyFile(oldPath, newPath)
-    res.send('File uploaded successfully')
+      await fs.copyFile(oldPath, newPath)
+    }
+    res.send(`${fileArray.length} files uploaded successfully`)
   } catch (error) {
     console.error(error)
-    res.status(500).send('Something went wrong')
+    res.status(500).send('Error uploading file: ' + error.message)
   }
 
 })
