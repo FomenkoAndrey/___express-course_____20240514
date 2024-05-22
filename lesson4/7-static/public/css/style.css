@@ -1,0 +1,13 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: blue;
+}
+
+#message {
+  font-size: 30px;
+  margin: 30px 0;
+}
