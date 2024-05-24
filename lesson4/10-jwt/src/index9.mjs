@@ -15,13 +15,14 @@ const options = {
 }
 
 const verifyOptions = {
-  audience: /localhost:3000/
+  audience: /localhost:3001/
 }
 
 const token = jwt.sign(payload, secretKey, options)
 logColored('Token:', 'red', token)
 
 try {
+  // const decodedPayload = jwt.verify(token, secretKey, verifyOptions)
   const decodedPayload = jwt.decode(token)
   logColored('Decoded payload:', 'blue', decodedPayload)
 } catch (err) {

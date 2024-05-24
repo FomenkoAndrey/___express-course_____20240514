@@ -35,7 +35,7 @@ const authenticateJWT = (req, res, next) => {
 }
 
 app.get('/protected', authenticateJWT, (req, res) => {
-  res.json({ message: 'Це захищений маршрут' })
+  res.json({ message: 'Все ОК! Ви зайшли на захищений маршрут' })
 })
 
 app.listen(3000, () => {

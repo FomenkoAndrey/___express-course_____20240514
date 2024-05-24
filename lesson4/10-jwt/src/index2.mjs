@@ -9,9 +9,7 @@ const payload = {
 }
 
 const token = jwt.sign(payload, secretKey)
-
 logColored('Token:', 'red', token)
 
 const decodedPayload = jwt.verify(token, secretKey)
-
 logColored('Decoded payload:', 'blue', decodedPayload)

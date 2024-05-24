@@ -26,9 +26,8 @@ logColored('Decoded payload:', 'blue', decodedPayload)
 setTimeout(() => {
   try {
     const decodedPayload = jwt.verify(token, secretKey, verifyOptions)
-
     logColored('Ignore Expired???', 'redBright', decodedPayload)
   } catch (err) {
     log(`${err.name}: ${err.message}`, 'bgRedBright')
   }
-}, 5000)
+}, 7000)

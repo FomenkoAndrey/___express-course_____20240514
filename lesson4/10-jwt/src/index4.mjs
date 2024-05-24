@@ -9,7 +9,7 @@ const payload = {
 }
 
 const options = {
-  algorithm: 'HS512'
+  algorithm: 'HS512' // hs256, hs384, hs512
 }
 
 const token = jwt.sign(payload, secretKey, options)

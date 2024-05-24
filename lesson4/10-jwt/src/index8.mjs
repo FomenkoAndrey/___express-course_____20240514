@@ -15,7 +15,7 @@ const options = {
 }
 
 const verifyOptions = {
-  audience: /localhost:3000/
+  audience: /localhost:3000/ // ! пробуємо замінити на /localhost:3001
 }
 
 const token = jwt.sign(payload, secretKey, options)

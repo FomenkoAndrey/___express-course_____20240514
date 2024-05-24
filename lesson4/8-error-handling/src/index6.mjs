@@ -4,13 +4,13 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res, next) => {
-  const unhandledPromise = Promise.reject(new Error("Can't get the data"))
+  const unhandledPromise = Promise.reject(new Error('Can\'t get the data'))
 
   setTimeout(() => {
     unhandledPromise.catch((err) => {
       console.log('Обіцянка тепер оброблена: ', err.message)
     })
-  }, 1000)
+  }, 5000)
 
   res.send('Hello World')
 })

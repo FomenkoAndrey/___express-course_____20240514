@@ -14,3 +14,7 @@ app.get('/', (req, res, next) => {
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`)
 })
+
+// yarn start:debug
+// yarn start:router
+// yarn start:app

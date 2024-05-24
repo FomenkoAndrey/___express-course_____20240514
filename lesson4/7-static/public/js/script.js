@@ -1,3 +1,3 @@
 setTimeout(() => {
   document.getElementById('message').innerText = 'Сторінка завантажена!'
-}, 1000)
+}, 3000)

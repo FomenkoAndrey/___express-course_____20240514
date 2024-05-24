@@ -16,4 +16,14 @@ app.get('/pdf', (req, res) => {
   })
 })
 
+app.get('/image', (req, res) => {
+  const filePath = path.join(__dirname, '../data/sample.webp')
+
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      res.status(500).send('Помилка при відправленні файлу: ' + err.message)
+    }
+  })
+})
+
 app.listen(3000)

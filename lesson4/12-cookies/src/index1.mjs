@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename)
 
 app.get('/', (req, res) => {
   res.cookie('date', new Date().toISOString())
-
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 

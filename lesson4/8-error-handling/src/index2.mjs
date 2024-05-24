@@ -4,10 +4,14 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res, next) => {
-  const err = new Error("Can't get the data")
+  const err = new Error('Can\'t get the data')
   next(err)
 })
 
+//   2 => req, res
+// ! 3 => req, res, next
+//        err=>req, req=>res, res=>next
+//   4 => err, req, res, next
 app.use((err, req, res) => {
   console.log('ERR:', err)
   console.log('REQ:', req)
